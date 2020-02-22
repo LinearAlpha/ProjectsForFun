@@ -5,5 +5,4 @@
 #include <vector>
 #include <string>
 
-
 #endif // ! _HEADERS_
