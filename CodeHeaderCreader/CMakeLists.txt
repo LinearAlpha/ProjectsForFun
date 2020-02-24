@@ -16,6 +16,7 @@ set(OUTPUT_FL
     "${CMAKE_PROJECT_NAME}-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.out"
     )
 set(SRC_LIST
+    HEAD_FORMAT.cpp
     bullet.cpp
     timeMade.cpp
     main.cpp
