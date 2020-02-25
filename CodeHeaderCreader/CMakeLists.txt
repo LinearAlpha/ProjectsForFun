@@ -9,6 +9,7 @@ set(PROJECT_VERSION_MINOR 1)
 include(CTest)
 enable_testing()
 
+set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_VERBOSE_MAKEFILE true)
 
 # Source file list and output filename
@@ -18,17 +19,16 @@ set(OUTPUT_FL
 set(SRC_LIST
     HEAD_FORMAT.cpp
     bullet.cpp
+    optionMenus.cpp
     timeMade.cpp
     main.cpp
     )
 
 # Common comfiler
-set(CMAKE_C_COMPILER "gcc")
-set(CMAKE_CXX_COMPILER "g++")
+set(CMAKE_CXX_COMPILER "g++-9")
 
 # Commen compile option
-add_compile_options(-Wall)
-
+add_compile_options(-std=c++11 -m64 -W -Wall -O2)
 SET ( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE} )
 SET ( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE}/lib )
 SET ( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE}/lib )
@@ -36,6 +36,7 @@ SET ( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE}/lib )
 # Build
 add_executable(${OUTPUT_FL} ${SRC_LIST})
 
+target_link_libraries(${OUTPUT_FL} -lm)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
