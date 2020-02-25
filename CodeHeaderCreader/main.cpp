@@ -82,17 +82,22 @@ inline void oprionOneMenu(int &optiontmp,
     int i = 0;
     do
     {
+        bool optionOne = true;
+       // bool optionTwo = true;
         cout << "Local: " << lTime(1) << "\nUTC: " << utcTime(1) << "\n\n";
         string tmp;
         createMenu(optiontmp);
         switch (optiontmp)
         {
         case 1:
-            optionSubMenu(i, "file header creater");
+            if (optionOne)
+            {
+                optionSubMenu(i, "file header creater");
+                optionOne = false;
+            }
             if (i == 1)
                 createFileH(dataTrans);
-            else
-                break;
+            break;
         case 2:
             optionSubMenu(i, " function header creater");
             createFunH(dataTrans);
