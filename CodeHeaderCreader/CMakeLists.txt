@@ -19,8 +19,8 @@ set(OUTPUT_FL
 set(SRC_LIST
     HEAD_FORMAT.cpp
     bullet.cpp
-    optionMenus.cpp
     timeMade.cpp
+    sourceMenu.cpp
     main.cpp
     )
 

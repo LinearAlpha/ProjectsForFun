@@ -45,7 +45,7 @@ inline void conClean()
 }
 
 inline void optionOne(int &optiontmp,
-                          vector<vector<HEAD_FORMAT>> &dataTrans)
+                      vector<vector<HEAD_FORMAT>> &dataTrans)
 {
     int flag = 0; // flag for submenus
     // flag for the do loop is original option
@@ -78,7 +78,7 @@ inline void optionOne(int &optiontmp,
 void createFileH(vector<vector<HEAD_FORMAT>> &allHTrans)
 {
     HEAD_FORMAT headTmp;
-    std::string tmp;
+    string tmp;
     cout << "\n\tProgram Name: ";
     getline(cin, tmp);
     headTmp.setProName(tmp);
@@ -103,7 +103,7 @@ void createFileH(vector<vector<HEAD_FORMAT>> &allHTrans)
     cout << "\tDescrive: ";
     getline(cin, tmp);
     headTmp.setDescrive(tmp);
-    // 2D vector, indext 0 fileH 
+    // 2D vector, indext 0 fileH
     allHTrans[0].push_back(headTmp);
     cout << "\n\nCreted\n\n";
 }
@@ -111,7 +111,7 @@ void createFileH(vector<vector<HEAD_FORMAT>> &allHTrans)
 void createFunH(vector<vector<HEAD_FORMAT>> &allHTrans)
 {
     HEAD_FORMAT headTmp;
-    std::string tmp;
+    string tmp;
     cout << "\n\nFunction name: ";
     getline(cin, tmp);
     headTmp.setProName(tmp);
@@ -119,8 +119,8 @@ void createFunH(vector<vector<HEAD_FORMAT>> &allHTrans)
     getline(cin, tmp);
     headTmp.setAuthor(tmp);
     // reall funInOut to get function input and output
-    headTmp.setInput(funcInOut(1));
-    headTmp.setOutput(funcInOut(2));
+    headTmp.setInput(funcInput());
+    headTmp.setOutput(funcOutput());
     int i;
     // To determine auto time or manual
     optionSubMenu(i);
@@ -136,61 +136,84 @@ void createFunH(vector<vector<HEAD_FORMAT>> &allHTrans)
     cout << "\tDescrive: ";
     getline(cin, tmp);
     headTmp.setDescrive(tmp);
-    // 2D vector, indext 1 funH 
+    // 2D vector, indext 1 funH
     allHTrans[1].push_back(headTmp);
     cout << "\n\nCreted\n\n";
 }
 
-vector<vector<string>> funcInOut(int option)
+vector<vector<string>> funcInput()
 {
     // index 0, name of func
     // index 1 descrive
     vector<vector<string>> tmp(2, vector<string>());
-    // option 1 for input
-    if (option == 1)
+    int count;
+    cout << "\tHow many input do you have?\n"
+         << ">> ";
+    cin >> count;
+    // cheking user input to make sure it is integer val within option
+    bulProof(count, 0, 1000);
+    for (int i = 0; i < count; i++)
     {
-        int count;
-        cout << "\tHow many input do you have?\n"
-             << ">> ";
-        cin >> count;
-        // cheking user input to make sure it is integer val within option
-        bulProof(count, 0, 1000);
-        for (int i = 0; i < count; i++)
-        {
-            string tmpNa, tmpDes;
-            cout << "Name of the input\n"
-                 << "- ";
-            getline(cin, tmpNa);
-            // index 0, name function
-            tmp[0].push_back(tmpNa);
-            cout << "Description\n"
-                 << "-  ";
-            getline(cin, tmpDes);
-            // index 1, descrive
-            tmp[1].push_back(tmpDes);
-        }
+        string tmpNa, tmpDes;
+        cout << "Name of the input\n"
+             << "- ";
+        getline(cin, tmpNa);
+        // index 0, name function
+        tmp[0].push_back(tmpNa);
+        cout << "Description\n"
+             << "-  ";
+        getline(cin, tmpDes);
+        // index 1, descrive
+        tmp[1].push_back(tmpDes);
     }
-    // option 2 for output
-    else if (option == 2)
+    return tmp;
+}
+
+vector<vector<string>> funcOutput()
+{
+    // index 0, name of func
+    // index 1 descrive
+    vector<vector<string>> tmp(2, vector<string>());
+
+    int count;
+    cout << "\tOut puts\n"
+         << "\tHow many output do you have?\n"
+         << ">> ";
+    cin >> count;
+    // cheking user input to make sure it is integer val within option
+    bulProof(count, 0, 1000);
+    for (int i = 0; i < count; i++)
     {
-        int count;
-        cout << "\tOut puts\n"
-             << "\tHow many output do you have?\n"
+        string tmpNa, tmpDes;
+        cout << "Name of the output\n"
              << ">> ";
-        cin >> count;
-        // cheking user input to make sure it is integer val within option
-        bulProof(count, 0, 1000);
-        for (int i = 0; i < count; i++)
+        getline(cin, tmpNa);
+        tmp[0].push_back(tmpNa);
+        cout << "Description\n"
+             << ">> ";
+        getline(cin, tmpDes);
+        tmp[1].push_back(tmpDes);
+    }
+    return tmp;
+}
+
+string outputFormat(HEAD_FORMAT const &dataTrans, string const optionName,
+                    int const numChar, bool const option)
+{
+    string tmpTrans, tmp, tmpChrL;
+    for (int i = 0; i < numChar; i++)
+        tmp = tmp + "*";
+    tmpTrans = tmp + "\n* " + optionName + ": ";
+    if (option)
+    {
+        tmpChrL = dataTrans.getFileName();
+        int num = tmpChrL.size() + optionName.size() + 4;
+        if (num <= numChar)
+            tmp = tmp + tmpChrL + "\n";
+        else if (num > numChar)
         {
-            string tmpNa, tmpDes;
-            cout << "Name of the output\n"
-                 << ">> ";
-            getline(cin, tmpNa);
-            tmp[0].push_back(tmpNa);
-            cout << "Description\n"
-                 << ">> ";
-            getline(cin, tmpDes);
-            tmp[1].push_back(tmpDes);
+            string tmpSec;
+            num = optionName.size() + 4;
         }
     }
     return tmp;
