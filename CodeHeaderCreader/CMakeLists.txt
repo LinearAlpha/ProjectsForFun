@@ -20,14 +20,15 @@ set(SRC_LIST
     HEAD_FORMAT.cpp
     bullet.cpp
     timeMade.cpp
+    sourceMenu.cpp
     main.cpp
     )
 
-# Common comfiler
 set(CMAKE_CXX_COMPILER "g++")
 
 # Commen compile option
 add_compile_options(-std=c++11 -m64 -W -Wall -E -v -O2 )
+
 SET ( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE} )
 SET ( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE}/lib )
 SET ( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BUILD_TYPE}/lib )
