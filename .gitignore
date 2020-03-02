@@ -21,4 +21,4 @@ build
 # python exculdable
 __pycache__
 dist
-.spec
+.exe.spec
