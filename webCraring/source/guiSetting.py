@@ -7,11 +7,8 @@ def setMainMenu(index):
     tmp.click()
 
 
-def setManufacturer(ManufacturerVal):
-    strTmpID = "//select[@id='ctl00_body_ddlManufacturer']"
-    strTmpVal = "//option[@value='" + str(ManufacturerVal) + "']"
-    try:
-        Manufacturer = driver.find_element_by_xpath(strTmpID).find_element_by_xpath(strTmpVal)
-        Manufacturer.click()
-    except Exception:
-        pass
+def setSubOption(optionName, optionVal):
+    strTmp = "//select[@id='ctl00_body_ddl" + \
+        optionName + "']/option[" + str(optionVal) + "]"
+    optionSection = driver.find_element_by_xpath(strTmp)
+    optionSection.click()
