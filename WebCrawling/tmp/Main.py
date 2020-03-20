@@ -1,19 +1,37 @@
 #coding: utf-8
 import time
-import multiprocessing
-import threading
-from guiSetting import setMainMenu
-from guiGet import getNameMainMenu
-from proseccForPassing import loopingOne
-from proseccForPassing import loopingTwo
-from proseccForPassing import loopingThree
-import dataClass
-from connect import driver
-from dataPreOut import dataForSave
 import csv
 import os
+from DataClass import dataClass
+from ClickWeb import clickCategory
+from ClickWeb import choiseOption
+from WebPassing import oneOprionChoicse
+from WebPassing import twoOprionChoicse
+from WebPassing import threeOprionChoicse
 
-if __name__ == '__main__':
+os.chdir("..")
+if os.path.isdir("Data"):
+    os.chdir("Data")
+else:
+    os.makedirs("Data")
+    os.chdir("Data")
+
+allData = []
+categoryName = []
+
+# Coffe
+i = 0
+clickCategory(i)
+categoryName.append()
+# This is partial xpath id
+option1 = "Manufacturer"
+option2 = "Model"
+# Collect and store data in to data list
+allData.append(twoOprionChoicse(categoryName[i], option1, option2))
+
+
+
+
     start_time = time.time()
     allData = []
     mainName = []
@@ -21,7 +39,6 @@ if __name__ == '__main__':
         # Coffe
         if i == 0:
             setMainMenu(i)
-            mainMenuName = getNameMainMenu(i)
             option1 = "Manufacturer"
             option2 = "Model"
             allData.append(loopingTwo(mainMenuName, option1, option2))
@@ -110,15 +127,11 @@ if __name__ == '__main__':
 
     driver.quit()
     print('\n\n\n\n')
-    
-    os.chdir("..")
-    if os.path.isdir("Data"):
-        os.chdir("Data")
-    else:
-        os.makedirs("Data")
-        os.chdir("Data")
+
 
     for i in range(0, 10):
+        tmpPrint = "i = " + str(i)
+        print(tmpPrint)
         strTmp = mainName[i] + ".csv"
         f = open(strTmp, 'w', encoding='utf-8', newline='')
         thewriter = csv.writer(f)
@@ -126,11 +139,10 @@ if __name__ == '__main__':
         print(tmp)
         max = len(allData[i])
         for j in range(0, max):
+            tmpPrint = "j = " + str(j)
+            print(tmpPrint)
             data = allData[i]
             dataForSave(thewriter, data[j], allData[i][j].getNumLoop())
         f.close()
         tmp = strTmp + " is saved on" + os.getcwd()
         print(tmp)
-        
-    print("--- %s seconds ---" % (time.time() - start_time))
-    print("everpuresizing.com web crawling is Finished")
