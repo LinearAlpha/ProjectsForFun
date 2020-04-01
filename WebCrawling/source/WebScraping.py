@@ -26,7 +26,7 @@ def menuValidation(optionName, optionVal):
 def numOptionOne(category, option1):
     # Holinding list of data class before return it
     data = []
-    for i in range(1, numElement(option1)):
+    for i in range(1, numElement(option1) + 1):
         clickOption(option1, i)
         if menuValidation(option1, i):
             tmp = numOptionOneData(category, option1, i)
@@ -48,13 +48,13 @@ def numOptionTwo(category, option1, option2):
 
 def numOptionThree(category, option1, option2, option3):
     data = []
-    for i in range(1, numElement(option1)):
+    for i in range(1, numElement(option1) + 1):
         clickOption(option1, i)
         if menuValidation(option1, i):
-            for j in range(1, numElement(option2)):
+            for j in range(1, numElement(option2) + 1):
                 clickOption(option2, j)
                 if menuValidation(option2, j):
-                    for k in range(1, numElement(option3)):
+                    for k in range(1, numElement(option3) + 1):
                         if menuValidation(option3, k):
                             tmp = numOptionThreeData(
                                 category, option1, option2, option3, i, j, k)

@@ -33,7 +33,7 @@ def numOptionTwoData(category, option1, option2, i, j):
 def numOptionThreeData(category, option1, option2, option3, i, j, k):
     data = WD()
     data.setCategory(category)
-    data.setNumOption(2)
+    data.setNumOption(3)
     data.setOptionOne(menuName(option1, i))
     data.setOptionTwo(menuName(option2, j))
     data.setOptionThree(menuName(option3, k))
@@ -41,3 +41,18 @@ def numOptionThreeData(category, option1, option2, option3, i, j, k):
     return data
     
     
+def findREplase (tmp):
+    tmp.replace("Everpure ", "")
+    return tmp
+    
+def saveData(wr, data):
+    for i in range(0, len(data)):
+        tmp = data[i].getProductInfo()
+        max = len(tmp[0])
+        dataOut = []
+        dataOut.append(data[i].setCategory())
+        for j in range(0, max):
+            dataOut.append(findREplase(tmp[0][j]))
+            dataOut.append(tmp[2][j])
+            
+        

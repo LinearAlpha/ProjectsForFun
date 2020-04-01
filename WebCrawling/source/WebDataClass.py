@@ -51,6 +51,9 @@ class webData:
 
     def getOptionThree(self):
         return self.option3Name
+    
+    def getProductInfo(self):
+        return self.productInfo
 
     def getNumOption(self):
         return self.numOption

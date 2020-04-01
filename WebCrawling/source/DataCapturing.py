@@ -23,8 +23,8 @@ def captureCategory(index):
     strTmp = 'ctl00_body_dlApplication_ctl0' + str(index) + '_HyperLink1'
     tmp = driver.find_element_by_id(strTmp)
     # Return text of the element
-    strTmp = tmp.text()
-    return strTmp
+    tmp = tmp.text
+    return tmp
 
 '''
 Function: numElement
